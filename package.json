@@ -15,6 +15,7 @@
     "index.jsx",
     "index.tsx"
   ],
+  "publisher": "MarioStudio",
   "repository": {
     "type": "git",
     "url": "git@github.com:KingMario/folder4index.git"

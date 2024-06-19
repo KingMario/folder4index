@@ -33,7 +33,7 @@ suite("Extension Test Suite", () => {
     activate(context);
 
     assert.ok(onDidChangeActiveTextEditorStub.calledOnce);
-    assert.ok(registerCommandStub.calledWith("folder4index.rename"));
+    assert.ok(registerCommandStub.calledWith("FolderForIndex.rename"));
   });
 
   test("deactivate should not throw error", () => {

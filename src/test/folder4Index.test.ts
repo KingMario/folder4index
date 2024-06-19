@@ -2,10 +2,12 @@ import assert from "assert";
 import sinon from "sinon";
 import vscode from "vscode";
 
-import { Folder4Index } from "../folder4Index";
+import { FolderForIndex } from "../folder4Index";
 
-suite("Folder4Index", () => {
-  let folder4Index: Folder4Index;
+suite("FolderForIndex", () => {
+  const extensions = [".js", ".ts", ".jsx", ".tsx"];
+
+  let folderForIndex: FolderForIndex;
   let showInformationMessageStub: sinon.SinonStub;
   let renameFileStub: sinon.SinonStub;
   let workspaceEditStub: sinon.SinonStub;
@@ -30,57 +32,71 @@ suite("Folder4Index", () => {
   });
 
   test("should prompt to rename index files", () => {
-    folder4Index = new Folder4Index("src/folder/index.js");
-    folder4Index.promptToRename();
+    folderForIndex = new FolderForIndex("src/folder/index.js");
+    folderForIndex.promptToRename();
 
-    folder4Index = new Folder4Index("src/folder/index.ts");
-    folder4Index.promptToRename();
+    folderForIndex = new FolderForIndex("src/folder/index.ts");
+    folderForIndex.promptToRename();
 
-    folder4Index = new Folder4Index("src/folder/index.jsx");
-    folder4Index.promptToRename();
+    folderForIndex = new FolderForIndex("src/folder/index.jsx");
+    folderForIndex.promptToRename();
 
-    folder4Index = new Folder4Index("src/folder/index.tsx");
-    folder4Index.promptToRename();
+    folderForIndex = new FolderForIndex("src/folder/index.tsx");
+    folderForIndex.promptToRename();
 
     assert.ok(showInformationMessageStub.callCount === 4);
   });
 
-  test("should not prompt to rename non-index files", () => {
-    folder4Index = new Folder4Index("src/folder/file.ts");
-    folder4Index.promptToRename();
+  test("should prompt to rename non-index files", () => {
+    folderForIndex = new FolderForIndex("src/folder/file.ts");
+    folderForIndex.promptToRename();
 
-    folder4Index = new Folder4Index("src/folder/file.ts");
-    folder4Index.promptToRename();
+    folderForIndex = new FolderForIndex("src/folder/file.ts");
+    folderForIndex.promptToRename();
 
-    folder4Index = new Folder4Index("src/folder/file.jsx");
-    folder4Index.promptToRename();
+    folderForIndex = new FolderForIndex("src/folder/file.jsx");
+    folderForIndex.promptToRename();
 
-    folder4Index = new Folder4Index("src/folder/file.tsx");
-    folder4Index.promptToRename();
+    folderForIndex = new FolderForIndex("src/folder/file.tsx");
+    folderForIndex.promptToRename();
 
-    assert.ok(showInformationMessageStub.notCalled);
+    assert.ok(showInformationMessageStub.callCount === 4);
   });
 
-  test("should rename file and move to parent directory", async () => {
-    folder4Index = new Folder4Index("src/folder/index.js");
-    await folder4Index.renameFileAndMoveToParentDirectory();
+  test("should rename file and move to parent folder", async () => {
+    const index = Math.floor(Math.random() * extensions.length);
+    const extension = extensions[index];
+
+    const filename = `src/folder/index${extension}`;
+
+    folderForIndex = new FolderForIndex(filename);
+    await folderForIndex.renameFile();
 
     assert.ok(workspaceEditStub.calledOnce);
     assert.ok(
       renameFileStub.calledOnceWith(
-        vscode.Uri.file("src/folder/index.js"),
-        vscode.Uri.file("src/folder.js")
+        vscode.Uri.file(filename),
+        vscode.Uri.file(filename.replace("/index", ""))
       )
     );
     assert.ok(applyEditStub.calledOnce);
   });
 
-  test("should not rename file and move to parent directory", async () => {
-    folder4Index = new Folder4Index("src/folder/file.js");
-    await folder4Index.renameFileAndMoveToParentDirectory();
+  test("should rename file and move to sub folder", async () => {
+    const index = Math.floor(Math.random() * extensions.length);
+    const extension = extensions[index];
 
-    assert.ok(workspaceEditStub.notCalled);
-    assert.ok(renameFileStub.notCalled);
-    assert.ok(applyEditStub.notCalled);
+    const filename = `src/folder/file${extension}`;
+    folderForIndex = new FolderForIndex(filename);
+    await folderForIndex.renameFile();
+
+    assert.ok(workspaceEditStub.calledOnce);
+    assert.ok(
+      renameFileStub.calledOnceWith(
+        vscode.Uri.file(filename),
+        vscode.Uri.file(filename.replace(extension, `/index${extension}`))
+      )
+    );
+    assert.ok(applyEditStub.calledOnce);
   });
 });

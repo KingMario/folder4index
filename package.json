@@ -1,7 +1,7 @@
 {
   "name": "folder4index",
-  "displayName": "FolderForIndex",
-  "description": "A VSCode extension that enhances the handling of index.js, index.ts, index.jsx, and index.tsx files by displaying the full path and providing a rename command.",
+  "displayName": "Folder For Index",
+  "description": "A VSCode extension that improves the management of index.js, index.ts, index.jsx, and index.tsx files by displaying their parent folder names and offering a rename command, as well as providing a vice versa rename command to convert a normal file to an index file under a folder named after the original file.",
   "keywords": [
     "index",
     "folder",
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git@github.com:KingMario/folder4index.git"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.88.0"
   },
@@ -30,7 +30,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "folder4index.rename",
+        "command": "FolderForIndex.rename",
         "title": "Rename Index File",
         "category": "FolderForIndex"
       }
@@ -38,15 +38,15 @@
     "menus": {
       "commandPalette": [
         {
-          "command": "folder4index.rename",
+          "command": "FolderForIndex.rename",
           "when": "false"
         }
       ],
       "explorer/context": [
         {
-          "command": "folder4index.rename",
+          "command": "FolderForIndex.rename",
           "group": "7_modification",
-          "when": "resourceFilename =~ /index\\.(js|ts|jsx|tsx)$/"
+          "when": "resourceExtname == .js || resourceExtname == .ts || resourceExtname == .js || resourceExtname == .tsx"
         }
       ]
     }

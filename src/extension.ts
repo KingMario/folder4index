@@ -5,8 +5,8 @@ import { FolderForIndex } from "./folder4Index";
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.window.onDidChangeActiveTextEditor(
-      (editor: vscode.TextEditor | undefined) =>
-        new FolderForIndex(editor!.document.fileName).promptToRename()
+      (editor) =>
+        editor && new FolderForIndex(editor.document.fileName).promptToRename()
     ),
     vscode.commands.registerCommand(
       "FolderForIndex.rename",

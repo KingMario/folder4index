@@ -1,18 +1,22 @@
-# Folder For Index VSCode Extension
+# Index File Manager VSCode Extension
 
-This extension is a handy tool for managing JavaScript, TypeScript, JSX, and TSX files in Visual Studio Code.
+This extension is a handy tool for managing `index` files in JavaScript, TypeScript, JSX, and TSX projects in Visual Studio Code.
+
+## Why the Name Change?
+
+Originally, this extension was named `Folder For Index` because its primary purpose was to display the folder information of the index file in the notification to avoid confusion when multiple index files were opened. However, with the availability of the `workbench.editor.customLabels` setting in VS Code, which allows displaying the folder name in the editor label, this feature became redundant. Consequently, the feature was removed, and new functionalities described below were added. To better reflect these new functionalities, the extension was renamed to `Index File Manager`.
 
 ## Features
 
 ### File Rename Command
 
-The `Folder For Index` extension offers a rename command that allows you to rename a selected `index.js`, `index.ts`, `index.jsx`, or `index.tsx` file to use its parent folder's name while keeping the same extension. For instance, file `src/components/Button/index.jsx` can be renamed to `src/components/Button.jsx` using this command.
+The `Index File Manager` extension offers a rename command that allows you to rename a selected `index.js`, `index.ts`, `index.jsx`, or `index.tsx` file to use its parent folder's name while keeping the same extension. For instance, file `src/components/Button/index.jsx` can be renamed to `src/components/Button.jsx` using this command.
 
 Vice versa, it also provides a rename command to rename a file of normal filename to an index file under the folder named after the file. For instance, file `src/components/Button.jsx` can be renamed to `src/components/Button/index.jsx` using this command.
 
 ### Create Index File Command
 
-The `Folder For Index` extension provides a command to create an `index` file in a specified folder. This command scans the folder for JavaScript, TypeScript, JSX, and TSX files and generates an `index` file that exports all the members(*) from all the found files.
+The `Index File Manager` extension provides a command to create an `index` file in a specified folder. This command scans the folder for JavaScript, TypeScript, JSX, and TSX files and generates an `index` file that exports all the members(*) from all the found files.
 
 ## Usage
 
@@ -32,11 +36,11 @@ To use the `Rename Index File` command, follow these steps:
 3. Select the desired file extension for the `index` file (`.js`, `.ts`, `.jsx`, or `.tsx`).
 4. The extension will create an `index` file in the selected folder, exporting all members from all the JavaScript, TypeScript, JSX, and TSX files found in that folder.
 
-Note: If an index file with the same extension already exists in the folder, you will be prompted to overwrite it. If you previously turned off the `Folder For Index` warning message, you need to click the Notification button in the bottom right corner to see this warning message.
+Note: If an index file with the same extension already exists in the folder, you will be prompted to overwrite it. If you previously turned off the `Index File Manager` warning message, you need to click the Notification button in the bottom right corner to see this warning message.
 
 ## Installation
 
-To install the extension, search for `Folder For Index` in the VSCode Extensions Marketplace and click Install.
+To install the extension, search for `Index File Manager` in the VSCode Extensions Marketplace and click Install.
 
 ## Deactivation
 

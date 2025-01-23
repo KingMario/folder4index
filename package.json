@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git@github.com:KingMario/folder4index.git"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "vscode": "^1.88.0"
   },

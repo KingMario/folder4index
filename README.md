@@ -10,17 +10,13 @@ The `Folder For Index` extension offers a rename command that allows you to rena
 
 Vice versa, it also provides a rename command to rename a file of normal filename to an index file under the folder named after the file. For instance, file `src/components/Button.jsx` can be renamed to `src/components/Button/index.jsx` using this command.
 
-### ~~File Name Display~~
+### Create Index File Command
 
-When you switch to an active text editor handling a file named `index.js`, `index.ts`, `index.jsx`, or `index.tsx`, the extension will display a message for you to distinguish it from other index files. This message includes the folder name of the file, followed by `/` and its filename. Moreover, it provides an option to rename it as the File Rename Command does.
-
-_In the meantime, Visual Studio Code has released settings to customize editor tab labels. Search settings for `workbench.editor.customLabels`, then set `Enabled` to `true` and add a `pattern` with value `"**/index.{js,ts,jsx,tsx}": "${dirname}/${filename}.${extname}"`. It can help you to distinguish index files of different folders._
-
-_This `File Name Display` function is to be removed in next release._
+The `Folder For Index` extension provides a command to create an `index` file in a specified folder. This command scans the folder for JavaScript, TypeScript, JSX, and TSX files and generates an `index` file that exports all the members(*) from all the found files.
 
 ## Usage
 
-### File Rename Command
+### Rename File
 
 To use the `Rename Index File` command, follow these steps:
 
@@ -29,9 +25,14 @@ To use the `Rename Index File` command, follow these steps:
 3. Your file will now be renamed.
 4. If prompted to update imports, please select `Yes` or `Always`.
 
-### ~~File Name Display~~
+### Create Index File
 
-Simply switch to a file named `index.js`, `index.ts`, `index.jsx`, or `index.tsx` and an information message will appear, displaying the file's parent folder name followed by `/` and its filename. Additionally, a `Rename` button is available for you to rename the file directly.
+1. Right-click on a folder in the VSCode file explorer.
+2. In the context menu, find the `Create Index File` option and click on it.
+3. Select the desired file extension for the `index` file (`.js`, `.ts`, `.jsx`, or `.tsx`).
+4. The extension will create an `index` file in the selected folder, exporting all members from all the JavaScript, TypeScript, JSX, and TSX files found in that folder.
+
+Note: If an index file with the same extension already exists in the folder, you will be prompted to overwrite it. If you previously turned off the `Folder For Index` warning message, you need to click the Notification button in the bottom right corner to see this warning message.
 
 ## Installation
 

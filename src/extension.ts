@@ -1,17 +1,19 @@
 import vscode from "vscode";
 
 import { FolderForIndex } from "./folder4Index";
+import { createIndex, extensions } from "./createIndex";
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
-    vscode.window.onDidChangeActiveTextEditor(
-      (editor) =>
-        editor && new FolderForIndex(editor.document.fileName).promptToRename()
-    ),
     vscode.commands.registerCommand(
       "FolderForIndex.rename",
-      ({ fsPath }: vscode.Uri) =>
-        new FolderForIndex(fsPath).renameFile()
+      ({ fsPath }: vscode.Uri) => new FolderForIndex(fsPath).renameFile()
+    ),
+    ...extensions.map((ext) =>
+      vscode.commands.registerCommand(
+        `FolderForIndex.newIndex.${ext}`,
+        ({ fsPath }: vscode.Uri) => createIndex(fsPath, ext)
+      )
     )
   );
 }

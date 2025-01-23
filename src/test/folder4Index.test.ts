@@ -31,38 +31,6 @@ suite("FolderForIndex", () => {
     sinon.restore();
   });
 
-  test("should prompt to rename index files", () => {
-    folderForIndex = new FolderForIndex("src/folder/index.js");
-    folderForIndex.promptToRename();
-
-    folderForIndex = new FolderForIndex("src/folder/index.ts");
-    folderForIndex.promptToRename();
-
-    folderForIndex = new FolderForIndex("src/folder/index.jsx");
-    folderForIndex.promptToRename();
-
-    folderForIndex = new FolderForIndex("src/folder/index.tsx");
-    folderForIndex.promptToRename();
-
-    assert.ok(showInformationMessageStub.callCount === 4);
-  });
-
-  test("should prompt to rename non-index files", () => {
-    folderForIndex = new FolderForIndex("src/folder/file.ts");
-    folderForIndex.promptToRename();
-
-    folderForIndex = new FolderForIndex("src/folder/file.ts");
-    folderForIndex.promptToRename();
-
-    folderForIndex = new FolderForIndex("src/folder/file.jsx");
-    folderForIndex.promptToRename();
-
-    folderForIndex = new FolderForIndex("src/folder/file.tsx");
-    folderForIndex.promptToRename();
-
-    assert.ok(showInformationMessageStub.callCount === 4);
-  });
-
   test("should rename file and move to parent folder", async () => {
     const index = Math.floor(Math.random() * extensions.length);
     const extension = extensions[index];

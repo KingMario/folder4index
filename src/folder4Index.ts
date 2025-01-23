@@ -51,19 +51,6 @@ export class FolderForIndex {
     }
   }
 
-  async promptToRename() {
-    if (this.fileRenamingInfo?.isIndexFile) {
-      const selection = await vscode.window.showInformationMessage<string>(
-        `${this.fileRenamingInfo.displayName}. Would you like to rename it to ${this.fileRenamingInfo.newFileName} and place it in the parent folder?`,
-        "Rename"
-      );
-
-      if (selection === "Rename") {
-        await this.renameFile();
-      }
-    }
-  }
-
   async renameFile() {
     if (this.fileRenamingInfo) {
       const oldUri = vscode.Uri.file(this.fileRenamingInfo.filePath);

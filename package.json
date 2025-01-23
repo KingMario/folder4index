@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git@github.com:KingMario/folder4index.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "vscode": "^1.88.0"
   },
@@ -32,21 +32,60 @@
       {
         "command": "FolderForIndex.rename",
         "title": "Rename Index File",
-        "category": "FolderForIndex"
+        "category": "Folder For Index"
+      },
+      {
+        "command": "FolderForIndex.newIndex.js",
+        "title": "index.js",
+        "category": "Folder For Index"
+      },
+      {
+        "command": "FolderForIndex.newIndex.jsx",
+        "title": "index.jsx",
+        "category": "Folder For Index"
+      },
+      {
+        "command": "FolderForIndex.newIndex.ts",
+        "title": "index.ts",
+        "category": "Folder For Index"
+      },
+      {
+        "command": "FolderForIndex.newIndex.tsx",
+        "title": "index.tsx",
+        "category": "Folder For Index"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "FolderForIndex.newIndex",
+        "label": "New Index File"
       }
     ],
     "menus": {
-      "commandPalette": [
-        {
-          "command": "FolderForIndex.rename",
-          "when": "false"
-        }
-      ],
       "explorer/context": [
         {
           "command": "FolderForIndex.rename",
           "group": "7_modification",
           "when": "resourceExtname == .js || resourceExtname == .ts || resourceExtname == .js || resourceExtname == .tsx"
+        },
+        {
+          "submenu": "FolderForIndex.newIndex",
+          "group": "7_modification",
+          "when": "explorerResourceIsFolder"
+        }
+      ],
+      "FolderForIndex.newIndex": [
+        {
+          "command": "FolderForIndex.newIndex.js"
+        },
+        {
+          "command": "FolderForIndex.newIndex.jsx"
+        },
+        {
+          "command": "FolderForIndex.newIndex.ts"
+        },
+        {
+          "command": "FolderForIndex.newIndex.tsx"
         }
       ]
     }

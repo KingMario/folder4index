@@ -1,4 +1,6 @@
-# Folder For Index VSCode Extension
+# [DEPRECATED] Folder For Index VSCode Extension
+
+**This extension is deprecated and no longer maintained. Please use [Index File Manager](https://marketplace.visualstudio.com/items?itemName=MarioStudio.index-file-manager) instead.**
 
 This extension is a handy tool for managing JavaScript, TypeScript, JSX, and TSX files in Visual Studio Code.
 
